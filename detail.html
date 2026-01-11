@@ -6,6 +6,7 @@
     <title>Stream Drive — Premium Explorer</title>
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%2210%22 y=%2220%22 width=%2280%22 height=%2260%22 rx=%2210%22 fill=%22%234285F4%22/><path d=%22M40 35 L70 50 L40 65 Z%22 fill=%22white%22/></svg>">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -55,10 +56,12 @@
         .search-container input:focus { border-color: var(--accent); }
         .search-container i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
 
+        /* Video Stage */
         .video-stage { width: 100%; background: #000; padding: 0; }
         .player-wrapper { width: 100%; max-width: 1200px; margin: 0 auto; aspect-ratio: 16/9; position: relative; }
         iframe { width: 100%; height: 100%; border: none; }
 
+        /* Toolbar Updated */
         .toolbar { 
             max-width: 1200px; margin: 15px auto 30px; padding: 0 20px;
             display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;
@@ -70,8 +73,11 @@
             cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s;
         }
         .btn-action:hover { background: rgba(255, 255, 255, 0.1); }
+        
         .btn-accent { background: var(--accent); border: none; box-shadow: 0 4px 15px var(--glow); }
+        .btn-accent:hover { transform: translateY(-2px); }
 
+        /* Server Specific Style */
         .server-container { position: relative; }
         .server-dropdown {
             position: absolute; bottom: 100%; right: 0; margin-bottom: 10px;
@@ -87,6 +93,7 @@
         .server-item:hover { background: var(--accent); color: white; }
         .server-item.active { color: var(--accent); border-left: 3px solid var(--accent); }
 
+        /* Selection */
         .selection-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
         .label-text { font-size: 0.7rem; font-weight: 800; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
         .select-box {
@@ -103,14 +110,14 @@
         .dropdown-item { padding: 15px 20px; border-bottom: 1px solid var(--border); cursor: pointer; transition: 0.2s; }
         .dropdown-item:hover { background: var(--accent); }
 
-        /* Histats styling to ensure visibility */
-        .histats-counter { margin: 20px auto; text-align: center; opacity: 0.8; }
-
         @media (max-width: 600px) {
             .header-left span { display: none; }
             .btn-action span { display: none; }
             .btn-action { width: 42px; height: 42px; justify-content: center; border-radius: 50%; }
         }
+
+        /* Histats styling */
+        .histats-box { margin-top: 20px; text-align: center; }
 
         footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.5; font-size: 0.75rem; }
     </style>
@@ -122,10 +129,12 @@
         <a href="/" class="home-btn"><i class="fas fa-play"></i></a>
         <span id="headTitle" style="font-weight: 800; font-size: 0.9rem; color: var(--accent);">LOADING...</span>
     </div>
+
     <div class="search-container">
         <i class="fas fa-search"></i>
         <input type="text" placeholder="Search..." onkeyup="if(event.key === 'Enter') window.location.href='/?search='+this.value">
     </div>
+
     <a href="#" target="_blank" class="btn-action" style="background: var(--surface); border-radius: 25px; font-size: 0.7rem; font-weight: 800; text-decoration: none;">
         <i class="fas fa-download"></i> <span>DOWNLOAD</span>
     </a>
@@ -148,9 +157,18 @@
             <div class="server-item" onclick="changeServer('superembed', event)"><i class="fas fa-link"></i> Server 3 (Super)</div>
         </div>
     </div>
-    <button class="btn-action" onclick="addToHome()"><i class="fas fa-star"></i> <span>BOOKMARK</span></button>
-    <button class="btn-action" onclick="shareMovie()"><i class="fas fa-share-nodes"></i> <span>SHARE</span></button>
-    <button class="btn-action btn-accent" onclick="goFull()"><i class="fas fa-expand"></i> <span>FULLSCREEN</span></button>
+
+    <button class="btn-action" onclick="addToHome()">
+        <i class="fas fa-star"></i> <span>BOOKMARK</span>
+    </button>
+    
+    <button class="btn-action" onclick="shareMovie()">
+        <i class="fas fa-share-nodes"></i> <span>SHARE</span>
+    </button>
+    
+    <button class="btn-action btn-accent" onclick="goFull()">
+        <i class="fas fa-expand"></i> <span>FULLSCREEN</span>
+    </button>
 </div>
 
 <main class="selection-container">
@@ -171,20 +189,19 @@
     </div>
 </main>
 
-<div class="histats-counter">
-    <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.start', '1,4992391,4,0,0,0,00010000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-    hs.src = ('//s10.histats.com/js15_as.js');
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-    })();</script>
-    <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?4992391&101" alt="" border="0"></a></noscript>
-    </div>
-
 <footer>
+    <div class="histats-box">
+        <script type="text/javascript">var _Hasync= _Hasync|| [];
+        _Hasync.push(['Histats.start', '1,4992391,4,0,0,0,00010000']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        (function() {
+        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+        hs.src = ('//s10.histats.com/js15_as.js');
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+        })();</script>
+        <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?4992391&101" alt="web log free" border="0" style="width:30px; height:auto;"></a></noscript>
+        </div>
     <p>&copy; 2026 Stream Drive. All Rights Reserved.</p>
 </footer>
 
@@ -195,6 +212,7 @@
     const type = params.get('type');
     let sUrl = parseInt(params.get('s')) || 1;
     let eUrl = parseInt(params.get('e')) || 1;
+
     let seriesData = null;
     let currentServer = 'vidsrc_me';
 
@@ -219,7 +237,7 @@
     function changeServer(serverName, event) {
         currentServer = serverName;
         document.querySelectorAll('.server-item').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+        if(event) event.currentTarget.classList.add('active');
         updatePlayer(sUrl, eUrl);
         toggleDrop('serverDrop');
     }
@@ -237,6 +255,13 @@
             baseUrl = type === 'movie' ? `https://multiembed.mov/?video_id=${id}&tmdb=1` : `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${s}&e=${e}`;
         }
         p.src = baseUrl + "&autoplay=1";
+    }
+
+    function toggleDrop(id) {
+        const el = document.getElementById(id);
+        const isVisible = el.style.display === 'block';
+        document.querySelectorAll('.dropdown-content, .server-dropdown').forEach(d => d.style.display = 'none');
+        el.style.display = isVisible ? 'none' : 'block';
     }
 
     function renderSeasons() {
@@ -259,10 +284,9 @@
 
     async function loadEpisodes(sNum, eNum = 1) {
         const drop = document.getElementById('epDrop');
-        drop.innerHTML = '<div class="dropdown-item">Loading...</div>';
+        drop.innerHTML = '';
         const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${sNum}?api_key=${API_KEY}`);
         const data = await res.json();
-        drop.innerHTML = '';
         data.episodes.forEach(ep => {
             const item = document.createElement('div');
             item.className = 'dropdown-item';
@@ -278,21 +302,9 @@
         updatePlayer(sNum, eNum);
     }
 
-    function toggleDrop(id) {
-        const el = document.getElementById(id);
-        const isVisible = el.style.display === 'block';
-        document.querySelectorAll('.dropdown-content, .server-dropdown').forEach(d => d.style.display = 'none');
-        el.style.display = isVisible ? 'none' : 'block';
-    }
-
-    function goFull() {
-        const player = document.getElementById('mainPlayer');
-        if (player.requestFullscreen) player.requestFullscreen();
-        else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen();
-    }
-
-    function addToHome() { alert("To add to Home Screen:\n\n1. Press Share/Menu.\n2. Select 'Add to Home Screen'."); }
-    function shareMovie() { navigator.share ? navigator.share({ title: document.title, url: window.location.href }) : (navigator.clipboard.writeText(window.location.href), alert("Link copied!")); }
+    function addToHome() { alert("Use browser menu to Bookmark."); }
+    function goFull() { const p = document.getElementById('mainPlayer'); if (p.requestFullscreen) p.requestFullscreen(); }
+    function shareMovie() { navigator.share ? navigator.share({ title: document.title, url: window.location.href }) : alert("URL Copied!"); }
 
     init();
 </script>
